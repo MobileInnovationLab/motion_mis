@@ -1,5 +1,6 @@
 import os
 import yaml
+import sys
 from linkedin_scraper import Person, actions
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
@@ -51,15 +52,19 @@ def crawl(member_data_path, filename):
     print(f'========= saved: {member_data_path}_generated/{filename} ========')
 
 if __name__ == '__main__':
-    email = "xxxx"
-    password = "yyyy"
-    driver = setup_driver(email, password)
+    if len(sys.argv) < 3:
+        sys.exit('Email or Password is empty')
+    email = sys.argv[1]
+    password = sys.argv[2]
+    print(email)
+    print(password)
+    # driver = setup_driver(email, password)
 
-    member_data_path = "./members_data"
-    generation_file_name = []
-    for dirpath, dnames, fnames in os.walk(member_data_path):
-        generation_file_name = fnames
-    save_generation_config(member_data_path, {'files': generation_file_name})
-    for filename in generation_file_name:
-        crawl(member_data_path, filename)
-    driver.quit()
+    # member_data_path = "./members_data"
+    # generation_file_name = []
+    # for dirpath, dnames, fnames in os.walk(member_data_path):
+    #     generation_file_name = fnames
+    # save_generation_config(member_data_path, {'files': generation_file_name})
+    # for filename in generation_file_name:
+    #     crawl(member_data_path, filename)
+    # driver.quit()
