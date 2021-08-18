@@ -23,9 +23,13 @@ class MyHomeController extends GetxController {
 
   void loadData() async {
     final generationPaths = await memberRepository.getFileList();
+    generationPaths.sort();
+    print(generationPaths);
 
     for (var genPath in generationPaths) {
       final genData = await memberRepository.getGenerationData(genPath);
+      genData.members.sort((a, b) => a.fullName.compareTo(b.fullName));
+
       members.addAll(genData.members);
       update();
     }
