@@ -38,6 +38,8 @@ jobs:
         run: |
           chmod +x ./build_member.sh
           ./build_member.sh
+      
+      # archive result
       - name: Archive Crawl Artifacts
         uses: actions/upload-artifact@v2
         with:

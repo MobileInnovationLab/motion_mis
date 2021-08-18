@@ -28,7 +28,14 @@ def read_generation_yaml(path, filename):
             return {}
 
 def save_generation_yaml(path, filename, data):
-    with open(f"{path}_generated/{filename}", 'w') as stream:
+    complete_path = f"{path}_generated/{filename}"
+    if not os.path.exists(os.path.dirname(complete_path)):
+        try:
+            os.makedirs(os.path.dirname(complete_path))
+        except OSError as exc: # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
+    with open(complete_path, 'w') as stream:
         try:
             yaml.dump(data, stream)
         except yaml.YAMLError as exc:
