@@ -39,6 +39,9 @@ jobs:
 
       # Run Python Scrapper
       - name: Run Python Scrapper
+        env: # Or as an environment variable
+          LINKEDIN_EMAIL: ${{ secrets.LINKEDIN_EMAIL }}
+          LINKEDIN_PASS: ${{ secrets.LINKEDIN_PASS }}
         run: |
           chmod +x ./build_member.sh
           ./build_member.sh
