@@ -179,7 +179,7 @@ class MemberCardView extends GetResponsiveView {
 
   Container createChip(double chipSize, Color chipColor, String content) {
     return Container(
-      padding: const EdgeInsets.only(left: 8, right: 8, top: 3, bottom: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Text(
         content,
         style: TextStyle(
