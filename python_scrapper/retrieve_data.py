@@ -56,15 +56,13 @@ if __name__ == '__main__':
         sys.exit('Email or Password is empty')
     email = sys.argv[1]
     password = sys.argv[2]
-    print(email)
-    print(password)
-    # driver = setup_driver(email, password)
+    driver = setup_driver(email, password)
 
-    # member_data_path = "./members_data"
-    # generation_file_name = []
-    # for dirpath, dnames, fnames in os.walk(member_data_path):
-    #     generation_file_name = fnames
-    # save_generation_config(member_data_path, {'files': generation_file_name})
-    # for filename in generation_file_name:
-    #     crawl(member_data_path, filename)
-    # driver.quit()
+    member_data_path = "./members_data"
+    generation_file_name = []
+    for dirpath, dnames, fnames in os.walk(member_data_path):
+        generation_file_name = fnames
+    save_generation_config(member_data_path, {'files': generation_file_name})
+    for filename in generation_file_name:
+        crawl(member_data_path, filename)
+    driver.quit()
