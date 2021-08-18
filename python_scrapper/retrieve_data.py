@@ -13,7 +13,14 @@ def setup_driver(email, password):
     return driver
 
 def save_generation_config(path, data):
-    with open(f"{path}_generated/config.yaml", 'w') as stream:
+    complete_path = f"{path}_generated/config.yaml"
+    if not os.path.exists(os.path.dirname(complete_path)):
+        try:
+            os.makedirs(os.path.dirname(complete_path))
+        except OSError as exc: # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
+    with open(complete_path, 'w') as stream:
         try:
             yaml.dump(data, stream)
         except yaml.YAMLError as exc:
